@@ -1,0 +1,59 @@
+<?php
+ob_start(); //from stack overflow
+include 'pass.php';
+error_reporting(E_ALL);
+ini_set('display_errors','On');
+$error=0;
+$mysqli = new mysqli("oniddb.cws.oregonstate.edu", "harrings-db", $pass, "harrings-db");
+if ($mysqli->connect_errno) {
+    echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+}
+if (($_POST["username"]==null))
+{
+	echo "Error to add an account it must have a name click <a href=\"index.php\">here</a> to return to login screen";
+}
+else if (($_POST["password"]==null))
+{
+	echo "Error to add an account it must have a password click <a href=\"index.php\">here</a> to return to login screen";
+}
+else if (($_POST["units"]==null))
+{
+	echo "Error to add an account it must have a number of units click <a href=\"index.php\">here</a> to return to login screen";
+}
+else if (($_POST["units"]==null))
+{
+	echo "Error to add an account it must have a secret number click <a href=\"index.php\">here</a> to return to login screen";
+}
+else
+{
+	$name=$_POST["username"];
+	$category=$_POST["password"];
+	$units=$_POST["units"];
+	$secret=$_POST["secretnumber"];
+	$teacher=$_POST["teacher"];
+
+	if (!($stmt = $mysqli->prepare("INSERT INTO USERDB(username, password, units, secretnumber, teacher) VALUES (?,?,?,?,?)"))) {
+		 echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
+		 $error=1;
+	}
+	if (!$stmt->bind_param("ssiib", $name, $category, $units, $secret, $teacher)) {
+		echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+		$error=1;
+	}
+	if (!$stmt->execute()) {
+		//echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+		$error=1;
+	}
+	$stmt->close();
+	if ($error==0)
+	{
+		session_start();
+		$_SESSION["username"]=$_POST["username"];
+		header("Location: switch.php", true);
+	}
+	else
+	{
+		echo "Error there is already an account with that user name click <a href=\"index.php\">here</a> to return to login page";
+	}
+}
+?>
