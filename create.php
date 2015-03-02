@@ -8,6 +8,17 @@ $mysqli = new mysqli("oniddb.cws.oregonstate.edu", "harrings-db", $pass, "harrin
 if ($mysqli->connect_errno) {
     echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
+$accounts=array();
+if (!$stmt = $mysqli->query("SELECT username FROM USERDB")) {
+		echo "Query Failed!: (" . $mysqli->errno . ") ". $mysqli->error;
+	}
+while($row = mysqli_fetch_array($stmt))
+{
+	if ((!(in_array($row['username'], $accounts)))&&($row['username']!=null))
+	{
+		array_push($accounts,$row['username']);
+	}	
+}
 if (($_POST["username"]==null))
 {
 	echo "Error to add an account it must have a name click <a href=\"index.php\">here</a> to return to login screen";
@@ -23,6 +34,10 @@ else if (($_POST["units"]==null))
 else if (($_POST["units"]==null))
 {
 	echo "Error to add an account it must have a secret number click <a href=\"index.php\">here</a> to return to login screen";
+}
+else if (in_array($row['username'], $accounts))
+{
+	echo "Could not add account as there is already another user with that Username click <a href=\"index.php\">here</a> to return to login screen";
 }
 else
 {
