@@ -3,7 +3,7 @@ ob_start(); //from stack overflow
 session_start();
 if (!isset($_SESSION["username"]))
 {
-    header("Location: login.php", true);
+    header("Location: index.php", true);
 }
 include 'pass.php';
 error_reporting(E_ALL);

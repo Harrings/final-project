@@ -60,6 +60,7 @@ else
 	{
 		session_start();
 		$_SESSION["username"]=$_POST["username"];
+		$_SESSION["units"]=$units;
 		header("Location: switch.php", true);
 	}
 	else

@@ -3,17 +3,23 @@ ob_start(); //from stack overflow
 include 'pass.php';
 error_reporting(E_ALL);
 ini_set('display_errors','On');
+session_start();
 if (!isset($_SESSION["username"]))
 {
-    header("Location: login.php", true);
+    header("Location: index.php", true);
 }
 $name=$_SESSION["username"];
-if (!$stmt = $mysqli->query("SELECT teacher FROM USERDB WHERE username='$name'")) {
+$mysqli = new mysqli("oniddb.cws.oregonstate.edu", "harrings-db", $pass, "harrings-db");
+if ($mysqli->connect_errno) {
+    echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+}
+if (!$stmt = $mysqli->query("SELECT teacher FROM USERDB WHERE username = '$name'")) {
 		echo "Query Failed!: (" . $mysqli->errno . ") ". $mysqli->error;
 	}
 while($row = mysqli_fetch_array($stmt))	
 	{
-		if(row["teacher"]==1)
+	
+		if($row['teacher']==1)
 		{
 			header("Location: teacher.php", true);
 		}

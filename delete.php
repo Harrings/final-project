@@ -6,7 +6,7 @@ ini_set('display_errors','On');
 session_start();
 if (!isset($_SESSION["username"]))
 {
-    header("Location: login.php", true);
+    header("Location: index.php", true);
 }
 $nameset=$_POST["uid"];
 $mysqli = new mysqli("oniddb.cws.oregonstate.edu", "harrings-db", $pass, "harrings-db");
