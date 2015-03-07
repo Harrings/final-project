@@ -42,6 +42,16 @@ else
 		<br><br>
 		<input type="submit" value="Submit">
 </form>
+<br>
+<h2>Forgot Password</h2>
+	<form action="reset.php" method="post">
+		<p>User Name: <input type="text" name="username" /></p>
+		<p>Secret Number: <input type="number" name="secretnumber" min="1" max="1000" /></p>	
+		<p>New Password: <input type="password" name="password" /></p>	
+		<br><br>
+		<input type="submit" value="Submit">
+</form>
+
 
 	
 <?php

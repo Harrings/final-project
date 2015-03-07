@@ -31,10 +31,6 @@ else if (($_POST["units"]==null))
 {
 	echo "Error to add an account it must have a number of units click <a href=\"index.php\">here</a> to return to login screen";
 }
-else if (($_POST["units"]==null))
-{
-	echo "Error to add an account it must have a secret number click <a href=\"index.php\">here</a> to return to login screen";
-}
 else if (in_array($row['username'], $accounts))
 {
 	echo "Could not add account as there is already another user with that Username click <a href=\"index.php\">here</a> to return to login screen";
