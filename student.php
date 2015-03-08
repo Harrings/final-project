@@ -22,7 +22,7 @@ if ($mysqli->connect_errno) {
 <h2>Add Class</h2>
 <form action="addclass.php" method="post">
 		<p>Course Name: <input type="text" name="cname" /></p>
-		<p>Course Units: <input type="number" name="cname" min="1" max="10" /></p>	
+		<p>Course Units: <input type="number" name="cunits" min="1" max="10" /></p>	
 		<p>Grade as number: <input type="number" name="cgrade" min="1" max="10" /></p>	
 		<br><br>
 		<input type="submit" value="Submit">
@@ -30,7 +30,7 @@ if ($mysqli->connect_errno) {
 <?php
 $username=$_SESSION['username'];
 $gradunits=$_SESSION['units'];
-if (!$stmt = $mysqli->query("SELECT uid, cname, cunits, cgrade, shared FROM CINFO WHERE username=$username")) {
+if (!$stmt = $mysqli->query("SELECT uid, cname, cunits, cgrade, shared FROM CINFO WHERE username='$username'")) {
 		echo "Query Failed!: (" . $mysqli->errno . ") ". $mysqli->error;
 	}
 ?>
@@ -139,11 +139,11 @@ for ($i=0;$i<$x; $i++)
 <input type="submit" value="Filter">
 </form>
 <?php
-if($_SESSION['Filter']=="NONE"||!isset($_SESSION['Filter']))
+if(!isset($_SESSION['sort'])||$_SESSION['sort']=="NONE")
 {
-	echo "<h3>Currently Viewing No Shared Users</h3>"
+	echo "<h3>Currently Viewing No Shared Users</h3>";
 }
-else if ($_SESSION['Filter']=="All")
+else if ($_SESSION['sort']=="All")
 {
 	if (!$stmt = $mysqli->query("SELECT username, cname, cunits, cgrade FROM CINFO WHERE shared=1")) {
 		echo "Query Failed!: (" . $mysqli->errno . ") ". $mysqli->error;
@@ -168,7 +168,7 @@ while($row = mysqli_fetch_array($stmt))
 	echo "<td>" . $row['cname'] . "</td>";
 	echo "<td>" . $row['cunits'] . "</td>";
 	echo "<td>" . $row['cgrade'] . "</td>";	
-	echo "</tr>"
+	echo "</tr>";
 }
 ?>
 </tbody>
@@ -200,7 +200,7 @@ while($row = mysqli_fetch_array($stmt))
 	echo "<td>" . $row['cname'] . "</td>";
 	echo "<td>" . $row['cunits'] . "</td>";
 	echo "<td>" . $row['cgrade'] . "</td>";	
-	echo "</tr>"
+	echo "</tr>";
 }
 ?>
 </tbody>
