@@ -32,5 +32,5 @@ if (!$stmt->execute()) {
     echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
 }
 $stmt->close();
-header("Location: index.php", true);
+header("Location: logout.php", true);
 ?>

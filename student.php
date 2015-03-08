@@ -6,7 +6,7 @@ ini_set('display_errors','On');
 session_start();
 if (!isset($_SESSION["username"]))
 {
-    header("Location: login.php", true);
+    header("Location: index.php", true);
 }
 $mysqli = new mysqli("oniddb.cws.oregonstate.edu", "harrings-db", $pass, "harrings-db");
 if ($mysqli->connect_errno) {
@@ -61,7 +61,7 @@ while($row = mysqli_fetch_array($stmt))
 		echo "Not Shared </td>";
 		echo "<td><form method=\"POST\" action=\"share.php\">";
 		echo "<input type=\"hidden\" name=\"uid\" value=\"".$row['uid']."\">";
-		echo "<input type=\"submit\" value=\"checkout\">";
+		echo "<input type=\"submit\" value=\"share\">";
 		echo "</form> </td>";
 	}
 	else
@@ -69,7 +69,7 @@ while($row = mysqli_fetch_array($stmt))
 		echo "Shared </td>";
 		echo "<td><form method=\"POST\" action=\"unshare.php\">";
 		echo "<input type=\"hidden\" name=\"uid\" value=\"".$row['uid']."\">";
-		echo "<input type=\"submit\" value=\"returned\">";
+		echo "<input type=\"submit\" value=\"unshare\">";
 		echo "</form> </td>";
 	}
 	echo "<td><form method=\"POST\" action=\"delete.php\">";
@@ -177,8 +177,8 @@ while($row = mysqli_fetch_array($stmt))
 }
 else
 {
-$sorter=$_SESSION['Filter'];
-	if (!$stmt = $mysqli->query("SELECT cname, cunits, cgrade FROM CINFO WHERE shared=1 and username=$sorter")) {
+$sorter=$_SESSION['sort'];
+	if (!$stmt = $mysqli->query("SELECT cname, cunits, cgrade FROM CINFO WHERE shared=1 and username='$sorter'")) {
 		echo "Query Failed!: (" . $mysqli->errno . ") ". $mysqli->error;
 	}
 	echo "<h3>Currently Viewing $sorter Shared User CLasses</h3>";
@@ -196,7 +196,6 @@ $sorter=$_SESSION['Filter'];
 while($row = mysqli_fetch_array($stmt))	
 {
 	echo "<tr>" ;
-	echo "<td>" . $row['username'] . "</td>";
 	echo "<td>" . $row['cname'] . "</td>";
 	echo "<td>" . $row['cunits'] . "</td>";
 	echo "<td>" . $row['cgrade'] . "</td>";	

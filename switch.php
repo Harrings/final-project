@@ -18,14 +18,15 @@ if (!$stmt = $mysqli->query("SELECT teacher FROM USERDB WHERE username = '$name'
 	}
 while($row = mysqli_fetch_array($stmt))	
 	{
-	
-		if($row['teacher']==1)
+	$teacher=$row['teacher'];
+		
+	}
+if($teacher==1)
 		{
 			header("Location: teacher.php", true);
 		}
-		else
+else
 		{
 			header("Location: student.php", true);
 		}
-	}
 ?>

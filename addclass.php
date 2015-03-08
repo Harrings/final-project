@@ -47,7 +47,7 @@ else
 	$stmt->close();
 	if ($error==0)
 	{
-		header("Location: video.php", true);
+		header("Location: switch.php", true);
 	}
 	else
 	{

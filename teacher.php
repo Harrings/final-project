@@ -54,11 +54,11 @@ for ($i=0;$i<$x; $i++)
 <input type="submit" value="Filter">
 </form>
 <?php
-if($_SESSION['Filter']=="NONE"||!isset($_SESSION['Filter']))
+if($_SESSION['sort']=="NONE"||!isset($_SESSION['sort']))
 {
-	echo "<h3>Currently Viewing No Shared Users</h3>"
+	echo "<h3>Currently Viewing No Shared Users</h3>";
 }
-else if ($_SESSION['Filter']=="All")
+else if ($_SESSION['sort']=="All")
 {
 	if (!$stmt = $mysqli->query("SELECT username, cname, cunits, cgrade FROM CINFO")) {
 		echo "Query Failed!: (" . $mysqli->errno . ") ". $mysqli->error;
@@ -83,7 +83,7 @@ while($row = mysqli_fetch_array($stmt))
 	echo "<td>" . $row['cname'] . "</td>";
 	echo "<td>" . $row['cunits'] . "</td>";
 	echo "<td>" . $row['cgrade'] . "</td>";	
-	echo "</tr>"
+	echo "</tr>";
 }
 ?>
 </tbody>
@@ -92,13 +92,13 @@ while($row = mysqli_fetch_array($stmt))
 }
 else
 {
-$sorter=$_SESSION['Filter'];
+$sorter=$_SESSION['sort'];
 	if (!$stmt = $mysqli->query("SELECT units FROM USERDB WHERE username=$sorter")) {
 		echo "Query Failed!: (" . $mysqli->errno . ") ". $mysqli->error;
 	}
 	while($row = mysqli_fetch_array($stmt))	
 	{
-		$gradunits=row['units'];
+		$gradunits=$row['units'];
 	}
 	if (!$stmt = $mysqli->query("SELECT cname, cunits, cgrade FROM CINFO WHERE shared=1 and username=$sorter")) {
 		echo "Query Failed!: (" . $mysqli->errno . ") ". $mysqli->error;
