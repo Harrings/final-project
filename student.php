@@ -17,8 +17,12 @@ if ($mysqli->connect_errno) {
 <html lang="en">
 <head>
   <title>Student Courses</title>
+<?php
+include "navbar.php";
+?>
 </head>
 <body>
+<section>
 <h2>Add Class</h2>
 <form action="addclass.php" method="post">
 		<p>Course Name: <input type="text" name="cname" /></p>
@@ -26,6 +30,7 @@ if ($mysqli->connect_errno) {
 		<p>Grade as number: <input type="number" name="cgrade" min="1" max="10" /></p>	
 		<br><br>
 		<input type="submit" value="Submit">
+		<br><br>
 </form>
 <?php
 $username=$_SESSION['username'];
@@ -34,6 +39,7 @@ if (!$stmt = $mysqli->query("SELECT uid, cname, cunits, cgrade, shared FROM CINF
 		echo "Query Failed!: (" . $mysqli->errno . ") ". $mysqli->error;
 	}
 ?>
+<h2>Classes Taken</h2>
 <table border="1">
 <thead> 
 <tr>
@@ -214,6 +220,7 @@ while($row = mysqli_fetch_array($stmt))
 <?php	
 }
 ?>
+</section>
 </body>
 </html>
 

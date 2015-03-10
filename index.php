@@ -3,9 +3,12 @@
 <head>
   <title>Final Project LOGIN</title>
   <link rel="stylesheet" href="main.css" type="text/css" />
+  <div>
   <h1>Course Tracker</h1>
+  </div>
 </head>
 <body>
+<section>
 <?php
 session_start();
 ob_start(); //from stack overflow
@@ -20,15 +23,15 @@ if (isset($_SESSION["username"]))
 else
 {
 ?>
-<section>
 <p>AJAX LOGIN</p>
 
 	<h2>Create Student Account</h2>
+	<p>Student accounts can add classes to their account and view others shared classes. </p>
 	<form action="create.php" method="post">
 		<p>User Name: <input type="text" name="username" /></p>
 		<p>Password: <input type="password" name="password" /></p>
 		<p>Total units needeed to graduate: <input type="number" name="units" value="120" min="1" max="120" /></p>	
-		<p>Secret Number: <input type="number" name="secretnumber" min="1" max="1000" /></p>	
+		<p>Secret Number: (used to reset lost password) <input type="number" name="secretnumber" min="1" max="1000" /></p>	
 		<input type="hidden" name="teacher" value="0"/>
 		<br><br>
 		<input type="submit" value="Submit">
@@ -36,10 +39,11 @@ else
 <br>
 <br>
 	<h2>Create Teacher Account</h2>
+	<p>Teacher accounds cannot add classes but can view all classes users have added. </p>
 	<form action="create.php" method="post">
 		<p>User Name: <input type="text" name="username" /></p>
 		<p>Password: <input type="password" name="password" /></p>	
-		<p>Secret Number: <input type="number" name="secretnumber" min="1" max="1000" /></p>	
+		<p>Secret Number: (used to reset lost password) <input type="number" name="secretnumber" min="1" max="1000" /></p>	
 		<input type="hidden" name="teacher" value="True"/>
 		<input type="hidden" name="units" value="120"/>
 		<br><br>
@@ -54,13 +58,14 @@ else
 		<br><br>
 		<input type="submit" value="Submit">
 </form>
-</section>
+
 
 	
 <?php
 }
 	
 
-?>	
+?>
+</section>	
 </body>
 </html>

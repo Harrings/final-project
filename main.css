@@ -3,11 +3,25 @@ section {
 	background-color: white;
 	text-align: center;
 	width: 50%;
-	justify: center;
-	font-family: font-family: "Times New Roman", Times, serif;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	margin-left: 25%;
+	margin-right: 25%;
+	padding-bottom: 5%;
+	padding-top: 5%;
 }
 body {
-	background-color: blue;
+	background-color: Aqua;
 }
-	
+div {
+	width: 50%;
+	font-family: Impact, Charcoal, sans-serif;
+	margin-left: 25%;
+	margin-right: 25%;
+	text-align: center;
+	}
+table {
+	width: 90%;
+	margin-left: 5%;
+	margin-right: 5%;
+}
 	

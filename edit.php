@@ -14,8 +14,12 @@ $units=$_SESSION['units'];
 <html lang="en">
 <head>
   <title>Edit</title>
+ <?php
+ include "navbar.php";
+ ?>
 </head>
 <body>
+<section>
 <?php
 if(!$_SESSION["teacher"])
 {
@@ -35,4 +39,7 @@ if(!$_SESSION["teacher"])
 ?>
 <h2>Delete Account</h2>
 <form action="deleteaccount.php" method="post">
-	<input type="submit" value="Submit">	
+	<input type="submit" value="Delete">	
+</section>
+</body>
+</html>

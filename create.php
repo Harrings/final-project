@@ -5,6 +5,19 @@ error_reporting(E_ALL);
 ini_set('display_errors','On');
 $error=0;
 $mysqli = new mysqli("oniddb.cws.oregonstate.edu", "harrings-db", $pass, "harrings-db");
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Reset Password</title>
+  <link rel="stylesheet" href="main.css" type="text/css" />
+  <div>
+  <h1>Course Tracker</h1>
+  </div>
+</head>
+<body>
+<section>
+<?php
 if ($mysqli->connect_errno) {
     echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
@@ -70,3 +83,6 @@ else
 	}
 }
 ?>
+</section>
+</body>
+</html>

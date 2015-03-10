@@ -17,9 +17,12 @@ if ($mysqli->connect_errno) {
 <html lang="en">
 <head>
   <title>Teacher Courses</title>
+ <?php
+include "navbar.php";
+?>
 </head>
 <body>
-
+<section>
 <?php
 $sharedusers=array();
 if (!$stmt = $mysqli->query("SELECT username FROM CINFO")) {
@@ -36,7 +39,7 @@ $username=$_SESSION['username'];
 $gradunits=$_SESSION['units'];
 
 ?>
-<h2>Info Sort by User</h2>
+<h2>Student reports: Sort by User</h2>
 <form action="filter.php" method="POST">
 <div align="center">
 <select name="sort">
@@ -170,7 +173,7 @@ $gpa=$totalgp/$totalunits;
 <?php	
 }
 ?>
-
+</section>
 </body>
 </html>
 
