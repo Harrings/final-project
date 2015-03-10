@@ -21,12 +21,13 @@ while($row = mysqli_fetch_array($stmt))
 	$teacher=$row['teacher'];
 		
 	}
-if($teacher==1)
+if(!$_SESSION["teacher"])
 		{
-			header("Location: teacher.php", true);
+			header("Location: student.php", true);
 		}
 else
 		{
-			header("Location: student.php", true);
+			header("Location: teacher.php", true);
+			
 		}
 ?>

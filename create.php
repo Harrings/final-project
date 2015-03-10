@@ -14,7 +14,7 @@ if (!$stmt = $mysqli->query("SELECT username FROM USERDB")) {
 	}
 while($row = mysqli_fetch_array($stmt))
 {
-	if ((!(in_array($row['username'], $accounts)))&&($row['username']!=null))
+	if (((!in_array($row['username'], $accounts)))&&($row['username']!=null))
 	{
 		array_push($accounts,$row['username']);
 	}	
@@ -31,7 +31,7 @@ else if (($_POST["units"]==null))
 {
 	echo "Error to add an account it must have a number of units click <a href=\"index.php\">here</a> to return to login screen";
 }
-else if (in_array($row['username'], $accounts))
+else if (in_array($_POST['username'], $accounts))
 {
 	echo "Could not add account as there is already another user with that Username click <a href=\"index.php\">here</a> to return to login screen";
 }
@@ -61,6 +61,7 @@ else
 		session_start();
 		$_SESSION["username"]=$_POST["username"];
 		$_SESSION["units"]=$units;
+		$_SESSION["teacher"]=$teacher;
 		header("Location: switch.php", true);
 	}
 	else

@@ -54,7 +54,7 @@ for ($i=0;$i<$x; $i++)
 <input type="submit" value="Filter">
 </form>
 <?php
-if($_SESSION['sort']=="NONE"||!isset($_SESSION['sort']))
+if(!isset($_SESSION['sort'])||$_SESSION['sort']=="NONE")
 {
 	echo "<h3>Currently Viewing No Shared Users</h3>";
 }
@@ -93,17 +93,17 @@ while($row = mysqli_fetch_array($stmt))
 else
 {
 $sorter=$_SESSION['sort'];
-	if (!$stmt = $mysqli->query("SELECT units FROM USERDB WHERE username=$sorter")) {
+	if (!$stmt = $mysqli->query("SELECT units FROM USERDB WHERE username='$sorter'")) {
 		echo "Query Failed!: (" . $mysqli->errno . ") ". $mysqli->error;
 	}
 	while($row = mysqli_fetch_array($stmt))	
 	{
 		$gradunits=$row['units'];
 	}
-	if (!$stmt = $mysqli->query("SELECT cname, cunits, cgrade FROM CINFO WHERE shared=1 and username=$sorter")) {
+	if (!$stmt = $mysqli->query("SELECT cname, cunits, cgrade FROM CINFO WHERE username='$sorter'")) {
 		echo "Query Failed!: (" . $mysqli->errno . ") ". $mysqli->error;
 	}
-	echo "<h3>Currently Viewing $sorter Shared User CLasses</h3>";
+	echo "<h3>Currently Viewing All $sorter User CLasses</h3>";
 ?>
 <table border="1">
 <thead> 
@@ -121,7 +121,6 @@ while($row = mysqli_fetch_array($stmt))
 {
 
 	echo "<tr>" ;
-	echo "<td>" . $row['username'] . "</td>";
 	echo "<td>" . $row['cname'] . "</td>";
 	echo "<td>" . $row['cunits'] . "</td>";
 	echo "<td>" . $row['cgrade'] . "</td>";	
@@ -151,8 +150,15 @@ while($row = mysqli_fetch_array($stmt))
 <tr>
 <?php
 $unitsleft=$gradunits-$totalunits;
+if ($totalunits==0)
+{
+	$gpa=0;
+}
+else
+{
 $gpa=$totalgp/$totalunits;
-	echo "<td>$username</td>";
+}
+	echo "<td>$sorter</td>";
 	echo "<td>$gradunits</td>";
 	echo "<td>$totalunits</td>";
 	echo "<td>$unitsleft</td>";

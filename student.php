@@ -98,7 +98,14 @@ while($row = mysqli_fetch_array($stmt))
 <tr>
 <?php
 $unitsleft=$gradunits-$totalunits;
+if ($totalunits==0)
+{
+	$gpa=0;
+}
+else
+{
 $gpa=$totalgp/$totalunits;
+}
 	echo "<td>$username</td>";
 	echo "<td>$gradunits</td>";
 	echo "<td>$totalunits</td>";

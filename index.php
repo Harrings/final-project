@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <title>Final Project LOGIN</title>
+  <link rel="stylesheet" href="main.css" type="text/css" />
+  <h1>Course Tracker</h1>
 </head>
 <body>
 <?php
@@ -18,6 +20,7 @@ if (isset($_SESSION["username"]))
 else
 {
 ?>
+<section>
 <p>AJAX LOGIN</p>
 
 	<h2>Create Student Account</h2>
@@ -37,7 +40,7 @@ else
 		<p>User Name: <input type="text" name="username" /></p>
 		<p>Password: <input type="password" name="password" /></p>	
 		<p>Secret Number: <input type="number" name="secretnumber" min="1" max="1000" /></p>	
-		<input type="hidden" name="teacher" value="1"/>
+		<input type="hidden" name="teacher" value="True"/>
 		<input type="hidden" name="units" value="120"/>
 		<br><br>
 		<input type="submit" value="Submit">
@@ -51,7 +54,7 @@ else
 		<br><br>
 		<input type="submit" value="Submit">
 </form>
-
+</section>
 
 	
 <?php

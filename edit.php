@@ -8,6 +8,7 @@ if (!isset($_SESSION["username"]))
 {
     header("Location: index.php", true);
 }
+$units=$_SESSION['units'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,13 +16,23 @@ if (!isset($_SESSION["username"]))
   <title>Edit</title>
 </head>
 <body>
+<?php
+if(!$_SESSION["teacher"])
+{
+?>
 <h2>Edit number of units needed</h2>
 <form action="editunits.php" method="post">
-		<p>Total units needeed to graduate: <input type="number" name="units" value="<?php $_SESSION['units']?>" min="1" max="120" /></p>
+<?php
+		echo "<p>Total units needeed to graduate: $units </p>"; 
+?>
+		<p> Edit :<input type="number" name="units" min="1" max="120" /></p>
 	<input type="submit" value="Submit">
 </form>	
 <br>
 <br>
+<?php
+}
+?>
 <h2>Delete Account</h2>
 <form action="deleteaccount.php" method="post">
 	<input type="submit" value="Submit">	
