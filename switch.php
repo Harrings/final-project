@@ -21,6 +21,7 @@ while($row = mysqli_fetch_array($stmt))
 	$teacher=$row['teacher'];
 		
 	}
+
 if(!$_SESSION["teacher"])
 		{
 			header("Location: student.php", true);
@@ -30,4 +31,6 @@ else
 			header("Location: teacher.php", true);
 			
 		}
+
+
 ?>

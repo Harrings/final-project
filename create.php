@@ -9,7 +9,7 @@ $mysqli = new mysqli("oniddb.cws.oregonstate.edu", "harrings-db", $pass, "harrin
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Reset Password</title>
+  <title>Create Account Password</title>
   <link rel="stylesheet" href="main.css" type="text/css" />
   <div>
   <h1>Course Tracker</h1>
@@ -60,7 +60,7 @@ else
 		 echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
 		 $error=1;
 	}
-	if (!$stmt->bind_param("ssiib", $name, $category, $units, $secret, $teacher)) {
+	if (!$stmt->bind_param("ssiii", $name, $category, $units, $secret, $teacher)) {
 		echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
 		$error=1;
 	}
