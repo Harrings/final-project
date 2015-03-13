@@ -5,7 +5,7 @@
   <link rel="stylesheet" href="main.css" type="text/css" />
 <script src="jquery.min.js"></script>
 <script src="jquery.ui.shake.js"></script>
-	<script>
+	<script> //used online tutorial for how to do shake animation
 			$(document).ready(function() {
 			
 			$('#login').click(function()
@@ -70,7 +70,7 @@ if (isset($_SESSION["username"]))
 else
 {
 ?>
-<section id="main">
+<section id="main" padding-top="0" padding-bottom="0">
 <h1>Login</h1>
 
 <section id="loginfo">
