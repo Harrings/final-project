@@ -12,6 +12,12 @@
 			{
 			var username=$("#username").val();
 			var password=$("#password").val();
+			if (username==''||password=='')
+			{
+			$('#loginfo').shake();
+			 $("#login").val('Login')
+			 $("#invalid").html("<span style='color:#cc0000'>Error:</span> Must enter both username and password. ");
+			}
 		    var dataString = 'username='+username+'&password='+password;
 			if($.trim(username).length>0 && $.trim(password).length>0)
 			{
